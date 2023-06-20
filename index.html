@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anime List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container text-center">
+        <img src="assets/img/logo.png" class="logo" />
+        <div class="input-group mb-3 w-50 mx-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by Title...."
+            id="search-input"
+          />
+          <button class="btn btn-primary" type="button" id="search-btn">
+            Search
+          </button>
+        </div>
+        <hr />
+        <button
+          class="btn btn-success btn-tambah"
+          data-bs-toggle="modal"
+          data-bs-target="#addModal"
+        >
+          &plus; Add Anime
+        </button>
+      </div>
+
+      <!-- MODAL TAMBAH -->
+      <div
+        class="modal fade"
+        id="addModal"
+        tabindex="-1"
+        aria-labelledby="addModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModalLabel">Add Anime</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="addForm">
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" required />
+                  <label for="type" class="form-label">Type</label>
+                  <input type="text" class="form-control" id="type" required />
+                  <label for="episodes" class="form-label">Episodes</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="episodes"
+                    required
+                  />
+                  <label for="status" class="form-label">Status</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="status"
+                    required
+                  />
+                  <label for="aired" class="form-label">Aired</label>
+                  <input type="text" class="form-control" id="aired" required />
+                  <label for="premiered" class="form-label">Premiered</label>
+                  <input type="text" class="form-control" id="premiered" />
+                  <label for="producers" class="form-label">Producers</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="producers"
+                    required
+                  />
+                  <label for="studios" class="form-label">Studios</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="studios"
+                    required
+                  />
+                  <label for="genres" class="form-label">Genres</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="genres"
+                    required
+                  />
+                  <label for="duration" class="form-label">Duration</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="duration"
+                    required
+                  />
+                  <label for="synopsis" class="form-label">Synopsis</label>
+                  <textarea
+                    class="form-control"
+                    id="synopsis"
+                    rows="3"
+                    required
+                  ></textarea>
+                  <label for="image" class="form-label">Image</label>
+                  <input type="text" class="form-control" id="image" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Edit -->
+      <div
+        class="modal fade"
+        id="editModal"
+        tabindex="-1"
+        aria-labelledby="editModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg" data-bs-backdrop="static">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Edit</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="editForm">
+                <div class="mb-3">
+                  <label for="editTitle" class="form-label">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editTitle"
+                    name="editTitle"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editType" class="form-label">Type</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editType"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editEpisodes" class="form-label">Episodes</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editEpisodes"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editStatus" class="form-label">Status</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editStatus"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editAired" class="form-label">Aired</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editAired"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editPremiered" class="form-label"
+                    >Premiered</label
+                  >
+                  <input type="text" class="form-control" id="editPremiered" />
+                </div>
+                <div class="mb-3">
+                  <label for="editProducers" class="form-label"
+                    >Producers</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editProducers"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editStudios" class="form-label">Studios</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editStudios"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editGenres" class="form-label">Genres</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editGenres"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editDuration" class="form-label">Duration</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editDuration"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="editSynopsis" class="form-label">Synopsis</label>
+                  <textarea
+                    class="form-control"
+                    id="editSynopsis"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="editImage" class="form-label">Image</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editImage"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="editFormSubmit">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL DETAIL -->
+      <div
+        class="modal fade"
+        id="detailModal"
+        tabindex="-1"
+        aria-labelledby="detailModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Detail</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FILTERING -->
+
+    <div class="container">
+      <h2>Filter Berdasarkan</h2>
+      <div class="row">
+        <!-- berdasarkan type -->
+        <div class="col-md-2">
+          <div class="dropdown mb-3 mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="typeDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Type
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="typeDropdown">
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="TV"
+                  id="tvCheckbox"
+                />
+                <label class="form-check-label" for="tvCheckbox"> TV </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Movie"
+                  id="movieCheckbox"
+                />
+                <label class="form-check-label" for="movieCheckbox">
+                  Movie
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="OVA"
+                  id="ovaCheckbox"
+                />
+                <label class="form-check-label" for="ovaCheckbox"> OVA </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Special"
+                  id="specialCheckbox"
+                />
+                <label class="form-check-label" for="specialCheckbox">
+                  Special
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- berdasarkan status -->
+        <div class="col-md-2">
+          <div class="dropdown mb-3 mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="durationDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Status
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="durationDropdown">
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="Finished Airing"
+                  id="finishedairingRadio"
+                />
+                <label class="form-check-label" for="finishedairingRadio"
+                  >Finished Airing</label
+                >
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="status"
+                  value="Currently Airing"
+                  id="currentlyAiringRadio"
+                />
+                <label class="form-check-label" for="currentlyAiringRadio"
+                  >Currently Airing</label
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- berdasarkan genre -->
+        <div class="col-md-2">
+          <div class="dropdown mb-3 mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="genresDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Genre
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="genresDropdown">
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Action"
+                  id="actionCheckbox"
+                />
+                <label class="form-check-label" for="actionCheckbox">
+                  Action
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Adventure"
+                  id="adventureCheckbox"
+                />
+                <label class="form-check-label" for="adventureCheckbox">
+                  Adventure
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Award Winning"
+                  id="awardwinningCheckbox"
+                />
+                <label class="form-check-label" for="awardwinningCheckbox">
+                  Award Winning
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Comedy"
+                  id="comedyCheckbox"
+                />
+                <label class="form-check-label" for="comedyCheckbox">
+                  Comedy
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Drama"
+                  id="dramaCheckbox"
+                />
+                <label class="form-check-label" for="dramaCheckbox">
+                  Drama
+                </label>
+              </li>
+
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Fantasy"
+                  id="fantasyCheckbox"
+                />
+                <label class="form-check-label" for="fantasyCheckbox">
+                  Fantasy
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Mystery"
+                  id="mysteryCheckbox"
+                />
+                <label class="form-check-label" for="mysteryCheckbox">
+                  Mystery
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Romance"
+                  id="romanceCheckbox"
+                />
+                <label class="form-check-label" for="romanceCheckbox">
+                  Romance
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Sci-fi"
+                  id="sci-fiCheckbox"
+                />
+                <label class="form-check-label" for="sci-fiCheckbox">
+                  Sci-fi
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Supernatural"
+                  id="supernaturalCheckbox"
+                />
+                <label class="form-check-label" for="supernaturalCheckbox">
+                  Supernatural
+                </label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="Suspense"
+                  id="suspenseCheckbox"
+                />
+                <label class="form-check-label" for="suspenseCheckbox">
+                  Suspense
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- berdasarkan duration -->
+        <div class="col-md-2">
+          <div class="dropdown mb-3 mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="durationDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Duration
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="durationDropdown">
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="23 min"
+                  id="23minRadio"
+                />
+                <label class="form-check-label" for="23minRadio">23 min</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="24 min"
+                  id="24minRadio"
+                />
+                <label class="form-check-label" for="24minRadio">24 min</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="25 min"
+                  id="25minRadio"
+                />
+                <label class="form-check-label" for="25minRadio">25 min</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="26 min"
+                  id="26minRadio"
+                />
+                <label class="form-check-label" for="26minRadio">26 min</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="30 min"
+                  id="30minRadio"
+                />
+                <label class="form-check-label" for="30minRadio">30 min</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="1 hr"
+                  id="1hrRadio"
+                />
+                <label class="form-check-label" for="1hrRadio">1 hr</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="duration"
+                  value="2 hr"
+                  id="2hrRadio"
+                />
+                <label class="form-check-label" for="2hrRadio">2 hr</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- berdasarkan musim -->
+        <div class="col-md-2">
+          <div class="dropdown mb-3 mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="premieredDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Premiered
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="premieredDropdown">
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="premiered"
+                  value="Spring"
+                  id="springRadio"
+                />
+                <label class="form-check-label" for="springRadio">Spring</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="premiered"
+                  value="Summer"
+                  id="summerRadio"
+                />
+                <label class="form-check-label" for="summerRadio">Summer</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="premiered"
+                  value="Fall"
+                  id="fallRadio"
+                />
+                <label class="form-check-label" for="fallRadio">Fall</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="premiered"
+                  value="Winter"
+                  id="winterRadio"
+                />
+                <label class="form-check-label" for="winterRadio">Winter</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sortir berdasarkan judul -->
+        <div class="col-md-2">
+          <div class="dropdown mb-3 mt-3">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="sortDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sortir
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sort"
+                  value="asc"
+                  id="ascRadio"
+                />
+                <label class="form-check-label" for="ascRadio">A-Z</label>
+              </li>
+              <li>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sort"
+                  value="desc"
+                  id="descRadio"
+                />
+                <label class="form-check-label" for="descRadio">Z-A</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTAINER CARD -->
+    <div class="container">
+      <div class="row" id="anime-info"></div>
+    </div>
+
+    <!-- javacript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>

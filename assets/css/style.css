@@ -1,0 +1,20 @@
+main{
+    height: 80vh;
+    display: grid;
+    align-items: center;
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../img/background.jpg);
+    background-size: cover;
+}
+
+.logo{
+    width: 340px;
+    height: 260px;
+}
+
+.dropdown-menu {
+    padding: 10px;
+}
+
+.container h2{
+    padding-top: 20px;
+}
